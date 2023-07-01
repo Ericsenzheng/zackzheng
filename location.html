@@ -1,0 +1,30 @@
+<div id="map"></div>
+<script src="https://www.openlayers.org/api/OpenLayers.js"></script>
+<script>
+    function initMap() {
+      // 创建地图容器
+      var map = new OpenLayers.Map("map");
+      
+      // 创建地图图层
+      var layer = new OpenLayers.Layer.OSM();
+      map.addLayer(layer);
+  
+      // 设置地图中心位置和缩放级别
+      var lon = 113.2545; // 福泉路的经度
+      var lat = 23.1299; // 福泉路的纬度
+      var zoom = 17; // 缩放级别（街道级别）
+      var center = new OpenLayers.LonLat(lon, lat).transform(
+        new OpenLayers.Projection("EPSG:4326"),
+        map.getProjectionObject()
+      );
+      map.setCenter(center, zoom);
+      
+      // 创建标记点
+      var marker = new OpenLayers.Marker(center);
+      map.addMarker(marker);
+    }
+    
+    // 在页面加载完成后调用初始化地图函数
+    window.onload = initMap;
+  </script>
+  
